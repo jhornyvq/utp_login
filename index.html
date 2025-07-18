@@ -22,27 +22,6 @@
     <script src="Scripts/Home.js"></script>
     <script>
         $(document).ready(function () {
-            // **IMPORTANTE:** El contenido del formulario ahora se carga directamente si lo deseas,
-            // pero la etiqueta <form> principal debe estar estática en el HTML.
-            // Si el contenido cargado dinámicamente incluía la etiqueta <form>,
-            // necesitarás ajustar el archivo "LoginPartial" para que solo devuelva el contenido interno de la tabla.
-            // O, simplemente mantener todo el formulario en el HTML estático como se muestra abajo.
-
-            // Las modificaciones de jQuery para los elementos internos del formulario deberían aplicarse a los IDs
-            // que ahora están estáticamente en la página o se cargan dentro del form.
-            // Por ejemplo, si los elementos como #trModificar, #divLogin, etc. están en el HTML que Netlify ve.
-
-            // Eliminamos la línea que carga el formulario dinámicamente si el formulario va a ser estático.
-            // $("#loginIdat").load(getPath() + "Account/LoginPartial", function () {
-            //     ... todas tus modificaciones jQuery aquí ...
-            // });
-
-            // Mantenemos las modificaciones de jQuery que afectan a los elementos dentro del formulario,
-            // asumiendo que el formulario y sus elementos ya están cargados estáticamente.
-            // Si getPath() y Account/LoginPartial son necesarios para otros elementos,
-            // puedes ajustar el .load() para cargar solo esos elementos.
-
-            // Estas modificaciones se aplicarían si los elementos existieran estáticamente o se cargaran de otra forma.
             $("#trModificar").replaceWith("<tr> <td id='tdCatcha' class='dCaptchaMod' colspan='1' style='width:250px; text-align:center;'><img id='loadCaptcha' style='width: 30px; height: 32px;'  onclick='generaCaptcha()' /><img id='dCaptcha' onclick='generaCaptcha()' /><span id='spanimg' /> </td> </tr> <tr> <td id='tdCatcha' colspan='1' style='width:250px; text-align:center;'> <input class='TxtCssCaptcha' id='cCaptcha' name='cCaptcha' placeholder='Escribe las letras de la imagen' style='width: 100px;' type='text' value=''></td></tr>");
 
             $("#divLogin").empty().html("<h2>Ingresa a tu cuenta</h2>");
@@ -52,7 +31,7 @@
             $("#spanimg").html("<div>Haz clic en la imagen para cambiar</div>");
             $("#idlimpiar").replaceWith("<input id='LimpiarUser' type='button' onclick='Limpiar()' style='width:250px;' value='Limpiar' class='buttonLimpiar' />");
 
-            $("#loginUser").val("Ingresar");
+            $("#loginUser").val("Ingresar"); // Esto seguirá funcionando para establecer el texto del botón.
 
             $("#hiddenUnidad").replaceWith("<input id='TnUni' name='TnUni' type='text' style='display:none;' value='UTP'/>");
 
@@ -204,7 +183,7 @@
                                         </tr>
                                         <tr>
                                             <td align="center" class="Tdbutton">
-                                                <input id="loginUser" onclick="validaLogin(event)" style="width:250px;" type="submit" value="Ingresar" class="button">
+                                                <input id="loginUser" style="width:250px;" type="submit" value="Ingresar" class="button">
                                                 <input id="LimpiarUser" type="button" onclick="Limpiar()" style='width:250px;' value="Limpiar" class="buttonLimpiar">
                                                 <br>
                                             </td>
