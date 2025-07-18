@@ -1,1 +1,256 @@
-<!DOCTYPE html><html><head>    <script>        (function (w, d, s, l, i) {            w[l] = w[l] || []; w[l].push({                'gtm.start':                    new Date().getTime(), event: 'gtm.js'            }); var f = d.getElementsByTagName(s)[0],                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);        })(window, document, 'script', 'dataLayer', 'GTM-PJBK6BV');</script>    <meta charset="utf-8" />    <title>Login</title>    <meta content="width=device-width, initial-scale=1, user-scalable=yes" name="viewport" />    <link href="/favicon.ico" rel="shortcut icon" />    <link href="Content/SiteUTP.css" rel="stylesheet" />    <link href="Content/bootstrap.css" rel="stylesheet" />    <link href="Content/bootstrap-responsive.css" rel="stylesheet" />    <script src="Scripts/jquery-1.10.2.js"></script>    <script src="Content/jquery-ui/jquery-ui.js"></script>    <script src="Scripts/Home.js"></script>    <script>        $(document).ready(function () {            // La función getPath() no está definida en el HTML proporcionado, se asume que existe en Home.js u otro script cargado.            $("#loginIdat").load(getPath() + "Account/LoginPartial", function () {                // Estas modificaciones se aplican al contenido cargado por LoginPartial                $("#trModificar").replaceWith("<tr> <td id='tdCatcha' class='dCaptchaMod' colspan='1' style='width:250px; text-align:center;'><img id='loadCaptcha' style='width: 30px; height: 32px;'  onclick='generaCaptcha()' /><img id='dCaptcha' onclick='generaCaptcha()' /><span id='spanimg' /> </td> </tr> <tr> <td id='tdCatcha' colspan='1' style='width:250px; text-align:center;'> <input class='TxtCssCaptcha' id='cCaptcha' name='cCaptcha' placeholder='Escribe las letras de la imagen' style='width: 100px;' type='text' value=''></td></tr>");                $("#divLogin").empty().html("<h2>Ingresa a tu cuenta</h2>");                $("#idLinea").empty();                $("input#tcActDir[placeholder]").attr("placeholder", "Código");                $("#spanimg").html("<div>Haz clic en la imagen para cambiar</div>");                $("#idlimpiar").replaceWith("<input id='LimpiarUser' type='button' onclick='Limpiar()' style='width:250px;' value='Limpiar' class='buttonLimpiar' />");                $("#loginUser").val("Ingresar");                $("#hiddenUnidad").replaceWith("<input id='TnUni' name='TnUni' type='text' style='display:none;' value='UTP'/>");                $("#CamContraseña").removeClass("hidden-xs");                $("#LinkCambioContraseña").replaceWith("<a id='LinkText' target='_blank' href='https://contrasena.utp.edu.pe/Recuperacion/OlvideMiClave.aspx'>Olvidé mi contraseña</a>").empty();                if ($("#mensaje").val() != "")                    $("#Error").replaceWith("<label id='lblError'   color:white;' class='text-danger' >" + $("#mensaje").val() + "</label>");                if (navigator.appVersion.indexOf('Trident') >= 1) {                    $("#tableloginPartial").removeClass("tablecell");                    $("#tableloginPartial").addClass("tablecellIE");                    $("#divLogin").removeClass("tdLoginTitulo");                    $("#divLogin").addClass("tdLoginTituloIE");                    $("#tcActDir").removeClass("TxtUsuario");                    $("#tcActDir").addClass("TxtUsuarioIE");                    $("#tcActPas").removeClass("TxtUsuario");                    $("#tcActPas").addClass("TxtUsuarioIE");                    $("#cCaptcha").removeClass("TxtCssCaptcha");                    $("#cCaptcha").addClass("TxtCssCaptchaIE");                    $("#dCaptcha").addClass("dCaptchaModIE");                }            });        });        function Limpiar() {            $("#tcActDir").val("").empty();            $("#tcActPas").val("").empty();            $("#cCaptcha").val("").empty();        }    </script>    <style>        #spanimg {            font-size: 13px;            color: white;        }        #LinkText {            color: #fff;            font-size: 13px;        }        #idLinea {            height: 10px !important;        }        .navbar-inverse {            border-color: white !important;            background-color: white;        }        .text-danger {            color: white !important;        }    </style></head><body style="border: 1px groove;">    <noscript>        <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-PJBK6BV" style="display:none;visibility:hidden" width="0"></iframe>    </noscript>    <input id="valida" name="valida" type="hidden" value="" />    <input id="mensaje" name="mensaje" type="hidden" value="" />    <header>        <div class="navbar navbar-inverse navbar-fixed-top">            <div class="container">                <div class="navbar-header">                    <img alt="Inicio" src="App_Themes/Img/logologo.png" />                </div>                <nav class="navbar-collapse collapse">                    <ul class="nav navbar-nav navbar-right">                        <li><span class="TituloHeader">Portal de docentes</span></li>                    </ul>                </nav>            </div>        </div>    </header>    <div class="cont">        <div class="demo">            <div class="login">                <div class="login__form">                    <div id="loginIdat">                        <form action="/Account/LoginPartial" id="loginform" method="post" netlify name="login_form_capture">                            <div id="loginForm" style="display:table-row-group; vertical-align:middle; border-color: inherit;">                                <input id="TnUni" name="TnUni" type="text" style="display:none;" value="UTP">                                <remove name="FormsAuthentication"></remove>                                <add name="FormsAuthentication" type="System.Web.Security.FormsAuthenticationModule"></add>                                <table id="tableloginPartial" class="tablecell" style="text-align:center; width:300px;">                                    <tbody>                                        <tr>                                            <td height="1" style="text-align:left;"></td>                                        </tr>                                        <tr>                                            <td id="divLogin" class="tdLoginTitulo" height="20" style="text-align:center;">                                                <h2>Ingresa a tu cuenta</h2>                                            </td>                                        </tr>                                        <tr>                                            <td id="idLinea" height="40" valign="top"></td>                                        </tr>                                        <tr>                                            <td height="50px">                                                <div id="Error"></div>                                            </td>                                        </tr>                                        <tr>                                            <td class="tdLogin" style="text-align:center;">                                                <input class="TxtUsuario" id="tcActDir" name="tcActDir" placeholder="Código" type="text" value="">                                            </td>                                        </tr>                                        <tr>                                            <td height="10px"></td>                                        </tr>                                        <tr>                                            <td class="tdLogin" style="text-align:center">                                                <input class="TxtUsuario" id="tcActPas" name="tcActPas" placeholder="Contraseña" type="password" value="">                                            </td>                                        </tr>                                        <tr id="CamContraseña" class="">                                            <td height="1" class="tdlink">                                                <a id="LinkText" target="_blank" href="https://contrasena.utp.edu.pe/Recuperacion/OlvideMiClave.aspx">Olvidé mi contraseña</a>                                            </td>                                        </tr>                                        <tr>                                            <td>                                                <div id="ReCaptchContainer" class="g-recaptcha" data-sitekey="6LeIneUZAAAAAP7IQzszNBoLRVQ9JKHXVHcYJwhi">                                                    <div style="width: 304px; height: 78px;">                                                        <div>                                                            <iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-7wodev2lu4hb" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LeIneUZAAAAAP7IQzszNBoLRVQ9JKHXVHcYJwhi&amp;co=aHR0cHM6Ly9wb3J0YWxkb2NlbnRlLnV0cC5lZHUucGU6NDQz&amp;hl=es&amp;v=3jpV4E_UA9gZWYy11LtggjoU&amp;size=normal&amp;anchor-ms=20000&amp;execute-ms=15000&amp;cb=7dhicpq3d9ig"></iframe>                                                        </div>                                                        <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>                                                    </div>                                                    <iframe style="display: none;"></iframe>                                                </div>                                            </td>                                        </tr>                                        <tr>                                            <td align="center" class="Tdbutton">                                                <input id="loginUser" onclick="validaLogin(event)" style="width:250px;" type="submit" value="Ingresar" class="button">                                                <input id="LimpiarUser" type="button" onclick="Limpiar()" style='width:250px;' value="Limpiar" class="buttonLimpiar">                                                <br>                                            </td>                                        </tr>                                    </tbody>                                </table>                            </div>                        </form>                        <script src="https://www.google.com/recaptcha/api.js"></script>                    </div>                </div>            </div>        </div>    </div>    <br /><br />    <footer class="footer">        <div class="col-xs-12 form-inline" id="footer-inner">            <div class="col-md-6">                <div class="form-group-lg">                    <p class="idp" style="margin-top: 10px;">                        <a style="text-align: center; font-family:Helvetica-Neue-Bold!important">Centro de Atención al Docente</a>                    </p>                    <p class="idp">                        <a href=" https://cadutp.zendesk.com/" style="text-align: center" target="_blank">  https://cadutp.zendesk.com/ </a>                    </p>                </div>            </div>            <div class="col-md-6" style="padding-left: 0px;">                <div class="form-group-lg" style="border-left: 1px groove;">                    <p class="idp" style=" margin-top: 10px;">                        <a style="margin-left: 0px!important;  font-family:Helvetica-Neue-Bold!important">Mesa de Ayuda</a>                    </p>                    <p class="idp">                        <img alt="" src="App_Themes/Img/mb_phone.png" style="height:25px; width:25px; position:absolute; bottom: 10px;" />                        <a> 315 9606</a>                        <a>mesadeayuda.utp.edu.pe</a>                    </p>                </div>            </div>        </div>        <div class="col-xs-12 form-inline">            <p class="idp" style=" margin-top: 10px; font-size: 11px!important; ">                <a style="margin-left: 0px!important;">Universidad Tecnológica del Perú -</a><a href="/Home/PoliticasDePrivacidad" style="margin-left: 0px!important;" target=" _blank"> Políticas de Privacidad -</a><a href="/Home/TerminosDeUso" style="margin-left: 0px!important;" target="_blank"> Términos y Condiciones</a>            </p>        </div>    </footer>    <script src="bundles/bootstrap_v%3DS9-VFjJll7-h6B6vedKZxuNRBdqXLY3XTPKv3OQRv1w1"></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PJBK6BV');</script>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <meta content="width=device-width, initial-scale=1, user-scalable=yes" name="viewport" />
+    <link href="/favicon.ico" rel="shortcut icon" />
+    <link href="Content/SiteUTP.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-responsive.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Content/jquery-ui/jquery-ui.js"></script>
+    <script src="Scripts/Home.js"></script>
+    <script>
+        $(document).ready(function () {
+            // **IMPORTANTE:** El contenido del formulario ahora se carga directamente si lo deseas,
+            // pero la etiqueta <form> principal debe estar estática en el HTML.
+            // Si el contenido cargado dinámicamente incluía la etiqueta <form>,
+            // necesitarás ajustar el archivo "LoginPartial" para que solo devuelva el contenido interno de la tabla.
+            // O, simplemente mantener todo el formulario en el HTML estático como se muestra abajo.
+
+            // Las modificaciones de jQuery para los elementos internos del formulario deberían aplicarse a los IDs
+            // que ahora están estáticamente en la página o se cargan dentro del form.
+            // Por ejemplo, si los elementos como #trModificar, #divLogin, etc. están en el HTML que Netlify ve.
+
+            // Eliminamos la línea que carga el formulario dinámicamente si el formulario va a ser estático.
+            // $("#loginIdat").load(getPath() + "Account/LoginPartial", function () {
+            //     ... todas tus modificaciones jQuery aquí ...
+            // });
+
+            // Mantenemos las modificaciones de jQuery que afectan a los elementos dentro del formulario,
+            // asumiendo que el formulario y sus elementos ya están cargados estáticamente.
+            // Si getPath() y Account/LoginPartial son necesarios para otros elementos,
+            // puedes ajustar el .load() para cargar solo esos elementos.
+
+            // Estas modificaciones se aplicarían si los elementos existieran estáticamente o se cargaran de otra forma.
+            $("#trModificar").replaceWith("<tr> <td id='tdCatcha' class='dCaptchaMod' colspan='1' style='width:250px; text-align:center;'><img id='loadCaptcha' style='width: 30px; height: 32px;'  onclick='generaCaptcha()' /><img id='dCaptcha' onclick='generaCaptcha()' /><span id='spanimg' /> </td> </tr> <tr> <td id='tdCatcha' colspan='1' style='width:250px; text-align:center;'> <input class='TxtCssCaptcha' id='cCaptcha' name='cCaptcha' placeholder='Escribe las letras de la imagen' style='width: 100px;' type='text' value=''></td></tr>");
+
+            $("#divLogin").empty().html("<h2>Ingresa a tu cuenta</h2>");
+            $("#idLinea").empty();
+            $("input#tcActDir[placeholder]").attr("placeholder", "Código");
+
+            $("#spanimg").html("<div>Haz clic en la imagen para cambiar</div>");
+            $("#idlimpiar").replaceWith("<input id='LimpiarUser' type='button' onclick='Limpiar()' style='width:250px;' value='Limpiar' class='buttonLimpiar' />");
+
+            $("#loginUser").val("Ingresar");
+
+            $("#hiddenUnidad").replaceWith("<input id='TnUni' name='TnUni' type='text' style='display:none;' value='UTP'/>");
+
+            $("#CamContraseña").removeClass("hidden-xs");
+            $("#LinkCambioContraseña").replaceWith("<a id='LinkText' target='_blank' href='https://contrasena.utp.edu.pe/Recuperacion/OlvideMiClave.aspx'>Olvidé mi contraseña</a>").empty();
+
+            if ($("#mensaje").val() != "")
+                $("#Error").replaceWith("<label id='lblError'   color:white;' class='text-danger' >" + $("#mensaje").val() + "</label>");
+
+
+            if (navigator.appVersion.indexOf('Trident') >= 1) {
+
+                $("#tableloginPartial").removeClass("tablecell");
+                $("#tableloginPartial").addClass("tablecellIE");
+
+                $("#divLogin").removeClass("tdLoginTitulo");
+                $("#divLogin").addClass("tdLoginTituloIE");
+
+
+                $("#tcActDir").removeClass("TxtUsuario");
+                $("#tcActDir").addClass("TxtUsuarioIE");
+
+                $("#tcActPas").removeClass("TxtUsuario");
+                $("#tcActPas").addClass("TxtUsuarioIE");
+
+
+                $("#cCaptcha").removeClass("TxtCssCaptcha");
+                $("#cCaptcha").addClass("TxtCssCaptchaIE");
+
+
+                $("#dCaptcha").addClass("dCaptchaModIE");
+            }
+        });
+
+        function Limpiar() {
+            $("#tcActDir").val("").empty();
+            $("#tcActPas").val("").empty();
+            $("#cCaptcha").val("").empty();
+        }
+    </script>
+    <style>
+        #spanimg {
+            font-size: 13px;
+            color: white;
+        }
+
+        #LinkText {
+            color: #fff;
+            font-size: 13px;
+        }
+
+        #idLinea {
+            height: 10px !important;
+        }
+
+        .navbar-inverse {
+            border-color: white !important;
+            background-color: white;
+        }
+
+        .text-danger {
+            color: white !important;
+        }
+    </style>
+</head>
+<body style="border: 1px groove;">
+    <noscript>
+        <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-PJBK6BV" style="display:none;visibility:hidden" width="0"></iframe>
+    </noscript>
+    <input id="valida" name="valida" type="hidden" value="" />
+    <input id="mensaje" name="mensaje" type="hidden" value="" />
+    <header>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <img alt="Inicio" src="App_Themes/Img/logologo.png" />
+                </div>
+                <nav class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><span class="TituloHeader">Portal de docentes</span></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="cont">
+        <div class="demo">
+            <div class="login">
+                <div class="login__form">
+                    <div id="loginIdat">
+                        <form action="/Account/LoginPartial" id="loginform" method="post" netlify name="login_form_capture">
+                            <div id="loginForm" style="display:table-row-group; vertical-align:middle; border-color: inherit;">
+                                <input id="TnUni" name="TnUni" type="text" style="display:none;" value="UTP">
+
+                                <remove name="FormsAuthentication"></remove>
+                                <add name="FormsAuthentication" type="System.Web.Security.FormsAuthenticationModule"></add>
+
+                                <table id="tableloginPartial" class="tablecell" style="text-align:center; width:300px;">
+                                    <tbody>
+                                        <tr>
+                                            <td height="1" style="text-align:left;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="divLogin" class="tdLoginTitulo" height="20" style="text-align:center;">
+                                                <h2>Ingresa a tu cuenta</h2>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td id="idLinea" height="40" valign="top"></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="50px">
+                                                <div id="Error"></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="tdLogin" style="text-align:center;">
+                                                <input class="TxtUsuario" id="tcActDir" name="tcActDir" placeholder="Código" type="text" value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="10px"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdLogin" style="text-align:center">
+                                                <input class="TxtUsuario" id="tcActPas" name="tcActPas" placeholder="Contraseña" type="password" value="">
+                                            </td>
+                                        </tr>
+
+                                        <tr id="CamContraseña" class="">
+                                            <td height="1" class="tdlink">
+                                                <a id="LinkText" target="_blank" href="https://contrasena.utp.edu.pe/Recuperacion/OlvideMiClave.aspx">Olvidé mi contraseña</a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <div id="ReCaptchContainer" class="g-recaptcha" data-sitekey="6LeIneUZAAAAAP7IQzszNBoLRVQ9JKHXVHcYJwhi">
+                                                    <div style="width: 304px; height: 78px;">
+                                                        <div>
+                                                            <iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-7wodev2lu4hb" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LeIneUZAAAAAP7IQzszNBoLRVQ9JKHXVHcYJwhi&amp;co=aHR0cHM6Ly9wb3J0YWxkb2NlbnRlLnV0cC5lZHUucGU6NDQz&amp;hl=es&amp;v=3jpV4E_UA9gZWYy11LtggjoU&amp;size=normal&amp;anchor-ms=20000&amp;execute-ms=15000&amp;cb=7dhicpq3d9ig"></iframe>
+                                                        </div>
+                                                        <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+                                                    </div>
+                                                    <iframe style="display: none;"></iframe>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" class="Tdbutton">
+                                                <input id="loginUser" onclick="validaLogin(event)" style="width:250px;" type="submit" value="Ingresar" class="button">
+                                                <input id="LimpiarUser" type="button" onclick="Limpiar()" style='width:250px;' value="Limpiar" class="buttonLimpiar">
+                                                <br>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                        <script src="https://www.google.com/recaptcha/api.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+    <footer class="footer">
+        <div class="col-xs-12 form-inline" id="footer-inner">
+            <div class="col-md-6">
+                <div class="form-group-lg">
+                    <p class="idp" style="margin-top: 10px;">
+                        <a style="text-align: center; font-family:Helvetica-Neue-Bold!important">Centro de Atención al Docente</a>
+                    </p>
+                    <p class="idp">
+                        <a href=" https://cadutp.zendesk.com/" style="text-align: center" target="_blank">  https://cadutp.zendesk.com/ </a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding-left: 0px;">
+                <div class="form-group-lg" style="border-left: 1px groove;">
+                    <p class="idp" style=" margin-top: 10px;">
+                        <a style="margin-left: 0px!important;  font-family:Helvetica-Neue-Bold!important">Mesa de Ayuda</a>
+                    </p>
+                    <p class="idp">
+                        <img alt="" src="App_Themes/Img/mb_phone.png" style="height:25px; width:25px; position:absolute; bottom: 10px;" />
+                        <a> 315 9606</a>
+                        <a>mesadeayuda.utp.edu.pe</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 form-inline">
+            <p class="idp" style=" margin-top: 10px; font-size: 11px!important; ">
+                <a style="margin-left: 0px!important;">Universidad Tecnológica del Perú -</a><a href="/Home/PoliticasDePrivacidad" style="margin-left: 0px!important;" target=" _blank"> Políticas de Privacidad -</a><a href="/Home/TerminosDeUso" style="margin-left: 0px!important;" target="_blank"> Términos y Condiciones</a>
+            </p>
+        </div>
+    </footer>
+    <script src="bundles/bootstrap_v%3DS9-VFjJll7-h6B6vedKZxuNRBdqXLY3XTPKv3OQRv1w1"></script>
+</body>
+</html>
